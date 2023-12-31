@@ -8,7 +8,6 @@
   text-align: center;
 }
 
-/* Add this to your CSS file */
 .background-image {
   background-image: url('./assets/bg.png');
   background-size: cover;
@@ -161,7 +160,7 @@
 }
 
 /* Add this to your CSS file */
-.certification-image {
+.skill-image {
   max-width: 100%; /* Set the maximum width to 100% of the container */
   height: auto; /* Maintain the aspect ratio */
 }
@@ -231,13 +230,13 @@
 
 /* Add this to your CSS file */
 .pagination .page-item.active .page-link {
-  background-color: #b5777e;
-  border-color: #b5777e;
+  background-color: #080808;
+  border-color: #070707;
   color: #ffffff;
 }
 
 .pagination .page-link {
-  color: #b5777e;
+  color: #ffffff;
   background-color: transparent;
   border-color: transparent;
 }
@@ -266,12 +265,12 @@
 
 /* Add space between cards */
 .card {
-  margin-bottom: 20px; /* Adjust the margin as needed */
+  margin-bottom: 20px; 
 }
 
 /* Style the card content */
 .p-card {
-  background-color: #fff4fb; /* Alternating background colors */
+  background-color: #77b5ae; /* Alternating background colors */
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -308,3 +307,11 @@
   margin-bottom: 5px;
 }
 
+.section {
+  overflow: auto; /* or overflow: scroll; */
+  max-height: 700px; 
+}
+.home-section {
+  overflow: auto; /* or overflow: scroll; */
+  max-height: 700px;
+}

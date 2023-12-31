@@ -60,22 +60,14 @@ function Nav() {
               </li>
               <li className="list-inline-item m-0">
                 <NavLink
-                  to="/Certifications"
+                  to="/Skills"
                   className="display-centery px-4 nav-item nav-link nav-menu-item"
                   activeClassName="nav-menu-active"
                 >
-                  Certifications
+                  Skills
                 </NavLink>
               </li>
-              <li className="list-inline-item m-0">
-                <NavLink
-                  to="/Contact"
-                  className="display-centery px-4 nav-item nav-link nav-menu-item"
-                  activeClassName="nav-menu-active"
-                >
-                  Contact
-                </NavLink>
-              </li>
+              
             </ul>
             <hr className="d-lg-none" />
             <div className="social-menu form-inline ml-auto">

@@ -7,12 +7,11 @@ import Android from "../assets/Android.jpg";
 import Data from "../assets/Data.png";
 import download from "../assets/download.png";
 
-
-function CertificationCard(props) {
+function SkillCard(props) {
   const { logo, title, issuer, date, id } = props;
   return (
     <Card className="shadow bg-light mb-4 animated bounceIn">
-      <Card.Img className="certification-image" variant="top" src={logo} />
+      <Card.Img className="Skill-image" variant="top" src={logo} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>
@@ -27,8 +26,8 @@ function CertificationCard(props) {
   );
 }
 
-function Certifications() {
-  const certifications = [
+function Skills() {
+  const Skills = [
     {
       logo: Android,
       title: "Android App Developpement",
@@ -85,12 +84,11 @@ function Certifications() {
       date: "mai. 2023",
       id: "000000000000000",
     },
-  
   ];
   const PAGE_SIZE = 3;
   const [activePage, setActivePage] = React.useState(1);
 
-  const totalPages = Math.ceil(certifications.length / PAGE_SIZE);
+  const totalPages = Math.ceil(Skills.length / PAGE_SIZE);
 
   const handleClick = (event) => {
     setActivePage(Number(event.target.text));
@@ -112,23 +110,27 @@ function Certifications() {
 
   const startIndex = (activePage - 1) * PAGE_SIZE;
   const endIndex = activePage * PAGE_SIZE;
-  const currentCertifications = certifications.slice(startIndex, endIndex);
-
+  const currentSkills = Skills.slice(startIndex, endIndex);
+  const cardStyle = {
+    backgroundColor: "#77b5ae" , // Alternating background colors
+    
+  };
   return (
-    <Row className="justify-content-center my-3">
-        
-      {currentCertifications.map((certification, index) => (
-        <Col key={index} xs={12} sm={6} md={4} lg={4}>
-          <CertificationCard {...certification} />
-        </Col>
-      ))}
-      <Row className="my-3">
-        <Col>
-          <Pagination className="justify-content-center">{pages}</Pagination>
-        </Col>
+    <Card style={cardStyle}>
+      <Row className="justify-content-center my-3">
+        {currentSkills.map((Skill, index) => (
+          <Col key={index} xs={12} sm={6} md={4} lg={4}>
+            <SkillCard {...Skill} />
+          </Col>
+        ))}
+        <Row className="my-3">
+          <Col>
+            <Pagination className="justify-content-center">{pages}</Pagination>
+          </Col>
+        </Row>
       </Row>
-    </Row>
+    </Card>
   );
 }
 
-export default Certifications;
+export default Skills;

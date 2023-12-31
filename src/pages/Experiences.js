@@ -12,8 +12,7 @@ const ExperienceCard = ({
   index,
 }) => {
   const cardStyle = {
-    backgroundColor: "#fff4fb" , // Alternating background colors
-    
+    backgroundColor: "#fff4fb", // Alternating background colors
   };
 
   const footerTemplate = (
@@ -57,8 +56,7 @@ const Experiences = () => {
   const experienceData = [
     {
       logo: "https://google.fr",
-      title:
-        "EMSI",
+      title: "EMSI",
       position: "Stagiaire",
       duration: "oct. 1909 - juin. 1919 · 100 ans",
       location: "Préfecture de Marrakech, Morocco",
@@ -69,8 +67,7 @@ const Experiences = () => {
     },
     {
       logo: "https://google.fr",
-      title:
-        "EMSI",
+      title: "EMSI",
       position: "Professeur (Temps partiel)",
       duration: "sept. 2017 - juil. 2020 · 2 an 11 mois",
       location: "Temps partiel",
@@ -92,22 +89,24 @@ const Experiences = () => {
   ];
 
   return (
-    <section className="section">
-      <div className="experience-grid">
-        {experienceData.map((experience, index) => (
-          <div key={index} className="card">
-            <ExperienceCard
-              title={experience.title}
-              position={experience.position}
-              duration={experience.duration}
-              location={experience.location}
-              courses={experience.courses}
-              index={index}
-            />
-          </div>
-        ))}
-      </div>
-    </section>
+    <Card  className="section">
+      <section>
+        <div className="experience-grid">
+          {experienceData.map((experience, index) => (
+            <div key={index} className="card">
+              <ExperienceCard
+                title={experience.title}
+                position={experience.position}
+                duration={experience.duration}
+                location={experience.location}
+                courses={experience.courses}
+                index={index}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+    </Card>
   );
 };
 
