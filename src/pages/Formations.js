@@ -1,40 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
+import axios from "axios";
 
 function Formations() {
-  const formations = [
-    {
-      diplome: "Master",
-      etablissement: "Emsi",
-      annees: "2019 - 2024",
-    },
-    {
-      diplome: "Walo - El jdida",
-      etablissement: "Faculte Bouch3ib doukkali",
-      annees: "2018 - 2019",
-    },
-    {
-      diplome: "BAC - Science Physique et Chimie",
-      etablissement: "Lycée Azzaytouna, El jadida",
-      annees: "2017 - 2018",
-    },
-  ];
+  const [educations, setEducations] = useState([]);
+
+  useEffect(() => {
+    const fetchEducations = async () => {
+      try {
+        const response = await axios.get("http://localhost:8084/educations");
+        setEducations(response.data);
+      } catch (error) {
+        console.error("Error fetching educations:", error);
+      }
+    };
+
+    fetchEducations();
+  }, []);
+
   const cardStyle = {
-    backgroundColor: "#77b5ae" , // Alternating background colors
-    
+    backgroundColor: "#77b5ae", // Alternating background colors
   };
 
   return (
     <Card style={cardStyle}>
       <section className="section">
-        {formations.map((formation) => (
-          <Card key={formation.diplome} className="mb-3">
+        {educations.map((education) => (
+          <Card key={education.id} className="mb-3">
             <Card.Body>
-              <Card.Title>{formation.diplome}</Card.Title>
+              <Card.Title>{education.degree}</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">
-                {formation.etablissement}
+                {education.institution}
               </Card.Subtitle>
-              <Card.Text>{formation.annees}</Card.Text>
+              <Card.Text>{education.graduationYear}</Card.Text>
             </Card.Body>
           </Card>
         ))}

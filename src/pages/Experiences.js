@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "primereact/card";
 import { FaCalendarAlt, FaMapMarkerAlt, FaBook } from "react-icons/fa";
+import axios from "axios";
 
 const ExperienceCard = ({
-  logo,
   title,
   position,
   duration,
   location,
   courses,
-  index,
 }) => {
   const cardStyle = {
     backgroundColor: "#fff4fb", // Alternating background colors
@@ -52,54 +51,41 @@ const ExperienceCard = ({
 };
 
 const Experiences = () => {
-  // Données pour chaque expérience
-  const experienceData = [
-    {
-      logo: "https://google.fr",
-      title: "EMSI",
-      position: "Stagiaire",
-      duration: "oct. 1909 - juin. 1919 · 100 ans",
-      location: "Préfecture de Marrakech, Morocco",
-      courses: [
-        "Filière : Techniques de développement informatique",
-        "Filière: Concepteur Réalisateur Java J2EE",
-      ],
-    },
-    {
-      logo: "https://google.fr",
-      title: "EMSI",
-      position: "Professeur (Temps partiel)",
-      duration: "sept. 2017 - juil. 2020 · 2 an 11 mois",
-      location: "Temps partiel",
-      courses: ["Langage C", "Python", "Merise", "XML", "Web", "UML"],
-    },
-    {
-      logo: "https://google.fr",
-      title: "EMSI",
-      position: "Professeur (Temps partiel)",
-      duration: "sept. 2012 - juil. 2016 · 3 ans 11 mois",
-      location: "Temps partiel",
-      courses: [
-        "Patrons de conception",
-        "Programmation orientée objet",
-        "JEE",
-        "UML",
-      ],
-    },
-  ];
+  const [experiences, setExperiences] = useState([]);
+  const [skills, setSkills] = useState([]);
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const response = await axios.get("http://localhost:8083/experiences");
+        setExperiences(response.data);
+      } catch (error) {
+        console.error("Error fetching experiences:", error);
+      }
+
+      try {
+        const response = await axios.get("http://localhost:8083/experiences/1/skills");
+        setSkills(response.data);
+      } catch (error) {
+        console.error("Error fetching skills:", error);
+      }
+    };
+
+    fetchExperiences();
+  }, []);
 
   return (
-    <Card  className="section">
+    <Card className="section">
       <section>
         <div className="experience-grid">
-          {experienceData.map((experience, index) => (
+          {experiences.map((experience, index) => (
             <div key={index} className="card">
               <ExperienceCard
                 title={experience.title}
                 position={experience.position}
-                duration={experience.duration}
-                location={experience.location}
-                courses={experience.courses}
+                duration={experience.startDate + " to " + experience.endDate}
+                location={experience.company}
+                courses={skills}
                 index={index}
               />
             </div>
